@@ -1,5 +1,7 @@
 from turtle import Turtle,Screen
 import time
+from scoreboard import Scoreboard
+scoreboard = Scoreboard()
 screen = Screen()
 
 STARTING_POSITIONS = [(0, 0), (-20, 0), (-40, 0)]
@@ -11,13 +13,22 @@ class Snake():
 
     def create_snake(self):
         for position in STARTING_POSITIONS:
-            self.new_t = Turtle()
-            self.new_t.shape("square")
-            self.new_t.color("white")
-            self.new_t.penup()
-            self.new_t.goto(position)
-            self.segments.append(self.new_t)
-            self.head = self.segments[0]
+            self.add_segment(position)
+
+    def add_segment(self,position):
+        self.new_t = Turtle()
+        self.new_t.shape("square")
+        self.new_t.color("white")
+        self.new_t.penup()
+        self.new_t.goto(position)
+        self.segments.append(self.new_t)
+        self.head = self.segments[0]
+        
+    def extend(self):
+        self.add_segment(self.segments[-1].position())
+            
+
+
     def move(self):
         for seg_num in range(len(self.segments) - 1, 0, -1):
             new_x = self.segments[seg_num - 1].xcor()
