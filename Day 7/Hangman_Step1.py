@@ -60,7 +60,7 @@ stages = [r'''
 random_word = random.choice(hangman.word_list).lower()
 placeholder = ""
 lives = 5
-print(random_word)
+
 placeholder = ""
 for position in range(1,len(random_word)+1):
     placeholder+="_"
@@ -68,7 +68,7 @@ print(placeholder)
 Game_over  = False
 correct_list = []
 while not Game_over:
-    print(f"You have total {lives} lives")
+    print(f"You have total {lives} live(s)")
     guess = input("Guess a letter \n") 
     display = ""
 
@@ -93,13 +93,12 @@ while not Game_over:
         print("You win")
     if guess not in random_word:
         lives-=1
-        print(f"Now You have {lives} lives left")
+        print(f"Now You have {lives} live(s) left")
 
         if lives ==0:
             print(f"You lost!\n The correct word was {random_word}" 
             )
             Game_over = True
-        elif lives ==1:
-            print(f"Now You have {lives} live left")
+        
 
     print(stages[lives])
